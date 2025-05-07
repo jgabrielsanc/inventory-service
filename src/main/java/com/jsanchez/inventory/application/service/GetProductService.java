@@ -4,7 +4,7 @@ import com.jsanchez.inventory.application.port.in.GetProductUseCase;
 import com.jsanchez.inventory.application.port.out.LoadProductPort;
 import com.jsanchez.inventory.domain.model.Product;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 public class GetProductService implements GetProductUseCase {
@@ -16,7 +16,7 @@ public class GetProductService implements GetProductUseCase {
     }
 
     @Override
-    public Optional<Product> getProductById(UUID id) {
-        return loadProductPort.loadById(id);
+    public Product getProduct(UUID id) {
+        return loadProductPort.loadById(id).orElseThrow(NoSuchElementException::new);
     }
 }

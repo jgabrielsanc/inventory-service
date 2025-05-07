@@ -21,8 +21,8 @@ public class CreateProductService implements CreateProductUseCase {
     }
 
     @Override
-    public Product createProduct(String name, int quantity) {
-        Product product = new Product(UUID.randomUUID(), name, quantity);
+    public Product createProduct(Product product) {
+        product.setId(UUID.randomUUID());
         saveProductPort.save(product);
         eventPublisherPort.publish(new ProductCreatedEvent(product.getId(), product.getName()));
         return product;

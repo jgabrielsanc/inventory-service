@@ -27,15 +27,13 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponse> createProduct(@RequestBody CreateProductRequest request) {
-        Product created = createProductUseCase.createProduct(request.name(), request.quantity());
+        Product created = createProductUseCase.createProduct(ProductRestMapper.toDomain(request));
         return ResponseEntity.ok(ProductRestMapper.toResponse(created));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProduct(@PathVariable UUID id) {
-        return getProductUseCase.getProductById(id)
-                .map(product -> ResponseEntity.ok(
-                        new ProductResponse(product.getId().toString(), product.getName(), product.getQuantity())))
-                .orElse(ResponseEntity.notFound().build());
+        Product product = getProductUseCase.getProduct(id);
+        return ResponseEntity.ok(ProductRestMapper.toResponse(product));
     }
 }
