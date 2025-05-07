@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getProduct(@PathVariable UUID id) {
+    public ResponseEntity<ProductResponse> getProduct(@PathVariable(value = "id") UUID id) {
         Product product = getProductUseCase.getProduct(id);
         return ResponseEntity.ok(ProductRestMapper.toResponse(product));
     }

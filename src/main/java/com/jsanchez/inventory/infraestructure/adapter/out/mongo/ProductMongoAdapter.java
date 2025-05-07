@@ -1,5 +1,6 @@
 package com.jsanchez.inventory.infraestructure.adapter.out.mongo;
 
+import com.jsanchez.inventory.application.port.out.LoadProductPort;
 import com.jsanchez.inventory.application.port.out.SaveProductPort;
 import com.jsanchez.inventory.domain.model.Product;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class ProductMongoAdapter implements SaveProductPort {
+public class ProductMongoAdapter implements SaveProductPort, LoadProductPort {
 
     private final SpringDataProductRepository repository;
 
