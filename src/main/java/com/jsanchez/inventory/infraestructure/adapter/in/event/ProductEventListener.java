@@ -14,6 +14,6 @@ public class ProductEventListener {
     @EventListener
     public void onProductCreated(ProductCreatedEvent event) {
         // TODO add implementation to kafka
-        log.info("📦 Product created (async): {} - {}", event.getProductId(), event.getName());
+        log.info("Product created (async): {} - {}", event.productId(), event.name());
     }
 }
